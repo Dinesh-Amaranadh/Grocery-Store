@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create Grocery Item</title>
+</head>
+<body>
+<h1>Create New Grocery Item</h1>
+<form th:action="@{/items/create}" th:object="${item}" method="post">
+    <label>Item Name:</label>
+    <input type="text" th:field="*{itemName}" required />
+    <br/>
+    <label>Weight:</label>
+    <input type="number" th:field="*{weight}" required />
+    <br/>
+    <label>Price:</label>
+    <input type="number" th:field="*{price}" required />
+    <br/>
+    <label>In Stock:</label>
+    <input type="checkbox" th:field="*{inStock}" />
+    <br/>
+    <label>Category:</label>
+    <select th:field="*{groceryCategory.categoryId}" required>
+        <option th:each="category : ${categories}"
+                th:value="${category.categoryId}"
+                th:text="${category.categoryType}">
+        </option>
+    </select>
+    <br/>
+    <button type="submit">Create</button>
+</form>
+<a th:href="@{/items}">Back to Items</a>
+</body>
+</html>

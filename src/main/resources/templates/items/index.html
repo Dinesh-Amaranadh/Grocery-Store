@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Grocery Items</title>
+</head>
+<body>
+<h1>Grocery Items</h1>
+<a th:href="@{/items/create}">Create New Item</a>
+<table>
+    <thead>
+    <tr>
+        <th>Item Name</th>
+        <th>Weight</th>
+        <th>In Stock</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="item : ${items}">
+        <td th:text="${item.itemName}"></td>
+        <td th:text="${item.weight}"></td>
+        <td th:text="${item.inStock}"></td>
+        <td>
+            <a th:href="@{|/items/${item.itemId}|}">View Details</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
